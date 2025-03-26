@@ -1,0 +1,2 @@
+# containerized-dotnet
+Various samples
