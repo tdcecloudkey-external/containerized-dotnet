@@ -70,8 +70,11 @@ madvise(0x7fcff4000000, 4026531840, MADV_DONTDUMP) = 0
 
 The remaining mmap of 7FCFF4000000 are never released.
 
+## Summary
 
+As seen, dotnet at one point correctly uses cgroups for memory size calculation. 
 
+Later during startup ulimits and sysinfo are used instead, which causes memory allocation issues.
 
 
 # Additional notes
