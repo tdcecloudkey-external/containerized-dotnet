@@ -1,0 +1,11 @@
+# Adjust to actual memory requirement, must be power of 2
+sgx.enclave_size = "1G"
+sgx.max_threads = 16
+sgx.remote_attestation = "dcap"
+sys.stack.size = "4M"
+sys.brk.max_size = "1M"
+
+loader.uid = 1654
+libos.entrypoint = "/app/dotnet-trace"
+sgx.allowed_files = [  "file:/debug/"]
+fs.mounts = [ { path = "/debug/", uri = "file:/debug/"},{ path = "/tmp/", type = "tmpfs"}]

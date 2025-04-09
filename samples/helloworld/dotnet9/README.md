@@ -12,7 +12,7 @@ docker build . -t dotnethelloworld-9-ubuntu -f Dockerfile.ubuntu
 
 # Steps to run
 
-
+docker run --cap-add=SYS_PTRACE -m1g --memory-swap=1g --kernel-memory=1g --memory-reservation=768m --cpuset-cpus=0 -v $HOME/log:/debug:rw -it dotnethelloworld-9-ubuntu
 ```console
 docker run --cap-add=SYS_PTRACE -m1g --memory-swap=1g --kernel-memory=1g --memory-reservation=768m --cpuset-cpus=0 -v $HOME/log:/log:rw -it --entrypoint bash dotnethelloworld-9-ubuntu
 ```
