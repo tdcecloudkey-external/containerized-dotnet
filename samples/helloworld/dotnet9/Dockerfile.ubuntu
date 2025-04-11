@@ -9,6 +9,8 @@ RUN dotnet restore -a $TARGETARCH
 # Copy source code and publish app
 COPY --link . .
 RUN dotnet publish -a $TARGETARCH --no-restore -o /app
+# install dotnet tool
+RUN dotnet tool install --tool-path /app dotnet-trace
 
 
 # Runtime stage
@@ -18,22 +20,27 @@ RUN apt-get update
 RUN apt-get install strace -y
 WORKDIR /app
 COPY --chown=app:app --link --from=build /app .
-ADD --chown=app:app --chmod=500 https://aka.ms/dotnet-trace/linux-x64 /app/dotnet-trace 
+
+
 RUN mkdir -p /debug
 RUN chown app:app /debug
+
 USER app
 
+#LOGFILE
 
-# dotnet trace quirks
-
-ENV DOTNET_BUNDLE_EXTRACT_BASE_DIR="/tmp"
-
+ENV DOTNET_TRACE_OUTPUT="/debug/trace.nettrace"
+ENV ULIMIT_AS_SOFT="2000000"
+ENV ULIMIT_AS_HARD="2000000"
 # dotnet quirks
 ENV DOTNET_GCHeapHardLimit="0xC800000"
-ENV DOTNET_RUNNING_IN_CONTAINER="true"
 ENV DOTNET_GCHeapCount="1"
 ENV DOTNET_gcServer="1"
 ENV DOTNET_RUNNING_IN_CONTAINER="true"
 
 
-ENTRYPOINT ["./dotnet-trace","collect","--output", "/debug/trace.nettrace","--","dotnetapp"]
+COPY --chmod=755 --chown=app:app entrypoint.sh /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+
