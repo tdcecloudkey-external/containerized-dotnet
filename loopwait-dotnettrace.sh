@@ -7,7 +7,7 @@ fi
 SLEEP_TIME=$1
 NUM_ITERATIONS=$2
 IMAGE=$3
-COMMAND="docker run -m500m --memory-swap=500m --kernel-memory=500m --memory-reservation=456m --rm -v $HOME/log:/debug:rw  $IMAGE"
+COMMAND="docker run -m250m --memory-swap=250m --kernel-memory=250m --memory-reservation=250m --rm -v $HOME/log:/debug:rw  $IMAGE"
 LOG_FILE="loop_log_$(date +%Y%m%d_%H%M%S).log"
 NETTRACE_FILE="trace_$(date +%Y%m%d_%H%M%S)"
 
@@ -20,7 +20,7 @@ do
     TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
     NETTRACE_FILE_INTERPOLATED="/debug/${NETTRACE_FILE}_iteration_${i}.nettrace"
     
-    COMMAND_ENTRYPOINT="docker run -m500m --memory-swap=500m --kernel-memory=500m --memory-reservation=456m --rm -v $HOME/log:/debug:rw --env DOTNET_TRACE_OUTPUT='$NETTRACE_FILE_INTERPOLATED' $IMAGE"
+    COMMAND_ENTRYPOINT="docker run -m250m --memory-swap=250m --kernel-memory=250m --memory-reservation=250m --rm -v $HOME/log:/debug:rw --env DOTNET_TRACE_OUTPUT='$NETTRACE_FILE_INTERPOLATED' $IMAGE"
     echo "[$TIMESTAMP] Iteration $i: Running command: $COMMAND_ENTRYPOINT"   
     # Execute command and append output to log
     eval "$COMMAND_ENTRYPOINT" 2>&1

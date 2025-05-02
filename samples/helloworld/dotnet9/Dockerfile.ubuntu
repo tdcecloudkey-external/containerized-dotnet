@@ -34,10 +34,10 @@ ENV ULIMIT_AS_SOFT="2000000"
 ENV ULIMIT_AS_HARD="2000000"
 # dotnet quirks
 ENV DOTNET_GCHeapHardLimit="0xC800000"
+ENV DOTNET_GCRegionRange="0xC800000"
 ENV DOTNET_GCHeapCount="1"
 ENV DOTNET_gcServer="1"
-ENV DOTNET_RUNNING_IN_CONTAINER="true"
-
+ENV DOTNET_EnableDiagnostics="0"
 
 COPY --chmod=755 --chown=app:app entrypoint.sh /app/entrypoint.sh
 

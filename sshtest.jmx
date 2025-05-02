@@ -56,17 +56,17 @@
       </ThreadGroup>
       <hashTree>
         <org.apache.jmeter.protocol.ssh.sampler.SSHCommandSampler guiclass="TestBeanGUI" testclass="org.apache.jmeter.protocol.ssh.sampler.SSHCommandSampler" testname="SSH Command">
-          <stringProp name="command">./loopwait-dotnettrace.sh 0 50 ghcr.io/tdcecloudkey-external/containerized-dotnet/helloworld-dotnet-9-ubuntu</stringProp>
+          <stringProp name="command">./loopwait-dotnettrace.sh 0 50 gsc-ghcr.io/tdcecloudkey-external/containerized-dotnet/helloworld-dotnet-9-ubuntu</stringProp>
           <intProp name="connectionTimeout">5000</intProp>
-          <stringProp name="hostname">40.87.156.192</stringProp>
+          <stringProp name="hostname"></stringProp>
           <stringProp name="passphrase"></stringProp>
-          <stringProp name="password">Strongnino!#</stringProp>
+          <stringProp name="password"></stringProp>
           <intProp name="port">22</intProp>
           <boolProp name="printStdErr">true</boolProp>
           <stringProp name="sshkeyfile"></stringProp>
           <boolProp name="useReturnCode">true</boolProp>
           <boolProp name="useTty">true</boolProp>
-          <stringProp name="username">strongnino</stringProp>
+          <stringProp name="username"></stringProp>
         </org.apache.jmeter.protocol.ssh.sampler.SSHCommandSampler>
         <hashTree/>
       </hashTree>
